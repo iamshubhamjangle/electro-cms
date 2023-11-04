@@ -38,8 +38,9 @@
     },
     "traits": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::trait.trait"
+      "relation": "manyToMany",
+      "target": "api::trait.trait",
+      "inversedBy": "products"
     },
     "description": {
       "type": "text"
@@ -60,6 +61,14 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::seller.seller"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

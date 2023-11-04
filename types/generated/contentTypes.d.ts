@@ -700,6 +700,8 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'oneToMany',
       'api::sub-category.sub-category'
     >;
+    image: Attribute.Media;
+    slug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -714,6 +716,35 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDealDeal extends Schema.CollectionType {
+  collectionName: 'deals';
+  info: {
+    singularName: 'deal';
+    pluralName: 'deals';
+    displayName: 'Deal';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image: Attribute.Media;
+    redirectUrl: Attribute.String;
+    traits: Attribute.Relation<
+      'api::deal.deal',
+      'oneToMany',
+      'api::trait.trait'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::deal.deal', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::deal.deal', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -750,7 +781,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     >;
     traits: Attribute.Relation<
       'api::product.product',
-      'oneToMany',
+      'manyToMany',
       'api::trait.trait'
     >;
     description: Attribute.Text;
@@ -767,6 +798,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToOne',
       'api::seller.seller'
     >;
+    image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -875,6 +907,11 @@ export interface ApiTraitTrait extends Schema.CollectionType {
   };
   attributes: {
     type: Attribute.String;
+    products: Attribute.Relation<
+      'api::trait.trait',
+      'manyToMany',
+      'api::product.product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -886,6 +923,39 @@ export interface ApiTraitTrait extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::trait.trait',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWebsiteBannerWebsiteBanner extends Schema.CollectionType {
+  collectionName: 'website_banners';
+  info: {
+    singularName: 'website-banner';
+    pluralName: 'website-banners';
+    displayName: 'WebsiteBanner';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    bannerImage: Attribute.Media;
+    redirectLink: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::website-banner.website-banner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::website-banner.website-banner',
       'oneToOne',
       'admin::user'
     > &
@@ -910,10 +980,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::category.category': ApiCategoryCategory;
+      'api::deal.deal': ApiDealDeal;
       'api::product.product': ApiProductProduct;
       'api::seller.seller': ApiSellerSeller;
       'api::sub-category.sub-category': ApiSubCategorySubCategory;
       'api::trait.trait': ApiTraitTrait;
+      'api::website-banner.website-banner': ApiWebsiteBannerWebsiteBanner;
     }
   }
 }

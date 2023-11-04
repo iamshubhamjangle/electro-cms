@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "website_banners",
+  "info": {
+    "singularName": "website-banner",
+    "pluralName": "website-banners",
+    "displayName": "WebsiteBanner",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "bannerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "redirectLink": {
+      "type": "string"
+    }
+  }
+}

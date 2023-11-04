@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "deals",
+  "info": {
+    "singularName": "deal",
+    "pluralName": "deals",
+    "displayName": "Deal",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "redirectUrl": {
+      "type": "string"
+    },
+    "traits": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::trait.trait"
+    }
+  }
+}
