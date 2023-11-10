@@ -21,12 +21,6 @@
       "target": "api::product.product",
       "mappedBy": "category"
     },
-    "sub_categories": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::sub-category.sub-category",
-      "mappedBy": "category"
-    },
     "image": {
       "type": "media",
       "multiple": false,
@@ -40,6 +34,16 @@
     },
     "slug": {
       "type": "string"
+    },
+    "banner_image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

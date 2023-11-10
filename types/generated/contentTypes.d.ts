@@ -695,13 +695,9 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'oneToMany',
       'api::product.product'
     >;
-    sub_categories: Attribute.Relation<
-      'api::category.category',
-      'oneToMany',
-      'api::sub-category.sub-category'
-    >;
     image: Attribute.Media;
     slug: Attribute.String;
+    banner_image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -734,11 +730,7 @@ export interface ApiDealDeal extends Schema.CollectionType {
   attributes: {
     image: Attribute.Media;
     redirectUrl: Attribute.String;
-    traits: Attribute.Relation<
-      'api::deal.deal',
-      'oneToMany',
-      'api::trait.trait'
-    >;
+    type: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -773,11 +765,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::product.product',
       'manyToOne',
       'api::category.category'
-    >;
-    sub_category: Attribute.Relation<
-      'api::product.product',
-      'manyToOne',
-      'api::sub-category.sub-category'
     >;
     traits: Attribute.Relation<
       'api::product.product',
@@ -847,47 +834,6 @@ export interface ApiSellerSeller extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::seller.seller',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSubCategorySubCategory extends Schema.CollectionType {
-  collectionName: 'sub_categories';
-  info: {
-    singularName: 'sub-category';
-    pluralName: 'sub-categories';
-    displayName: 'SubCategory';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    category: Attribute.Relation<
-      'api::sub-category.sub-category',
-      'manyToOne',
-      'api::category.category'
-    >;
-    products: Attribute.Relation<
-      'api::sub-category.sub-category',
-      'oneToMany',
-      'api::product.product'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::sub-category.sub-category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::sub-category.sub-category',
       'oneToOne',
       'admin::user'
     > &
@@ -983,7 +929,6 @@ declare module '@strapi/types' {
       'api::deal.deal': ApiDealDeal;
       'api::product.product': ApiProductProduct;
       'api::seller.seller': ApiSellerSeller;
-      'api::sub-category.sub-category': ApiSubCategorySubCategory;
       'api::trait.trait': ApiTraitTrait;
       'api::website-banner.website-banner': ApiWebsiteBannerWebsiteBanner;
     }

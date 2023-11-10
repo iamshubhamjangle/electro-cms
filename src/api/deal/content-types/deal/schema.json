@@ -26,10 +26,8 @@
     "redirectUrl": {
       "type": "string"
     },
-    "traits": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::trait.trait"
+    "type": {
+      "type": "string"
     }
   }
 }
