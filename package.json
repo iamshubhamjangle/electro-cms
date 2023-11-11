@@ -1,32 +1,29 @@
 {
   "name": "electro-cms",
-  "private": true,
   "version": "0.1.0",
+  "private": true,
   "description": "A Strapi application",
+  "license": "MIT",
+  "author": {
+    "name": "A Strapi developer"
+  },
   "scripts": {
+    "build": "strapi build",
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
     "@strapi/plugin-i18n": "4.15.0",
     "@strapi/plugin-users-permissions": "4.15.0",
+    "@strapi/provider-upload-cloudinary": "^4.15.2",
     "@strapi/strapi": "4.15.0",
     "mysql": "2.18.1",
     "pg": "^8.11.3",
     "strapi-plugin-import-export-entries": "^1.21.1"
   },
-  "author": {
-    "name": "A Strapi developer"
-  },
+  "devDependencies": {},
   "strapi": {
     "uuid": "d1287f5a-26ec-41cd-8d7a-765927d1c989"
-  },
-  "engines": {
-    "node": ">=18.0.0 <=20.x.x",
-    "npm": ">=6.0.0"
-  },
-  "license": "MIT"
+  }
 }

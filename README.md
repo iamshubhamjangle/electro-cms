@@ -34,7 +34,8 @@ yarn build
 
 ## ⚙️ Deployment
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+Media Library will be deployed on Cloudinary.
+Strapi Instance will be deployed on Render.
 
 ## 📚 Learn more
 
